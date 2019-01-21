@@ -14,7 +14,7 @@ MonoBehaviour:
   vuforia:
     vuforiaLicenseKey: AVGNABr/////AAABmZAbfJjJR0hUunijy/TRVKNC4Hs7xSL5MJXIEXJFDqp518kby4kJ3jbueywhvQ5Pu68gkvVa1Z1gqC3uAX6q0I7sindyfX32Pbw00fZO1Ih/vIIwIGS77yPsmFrUPCBcgPfbkkpR/9DSm3BAFxKTLMgwqAnlJ6jiLQwWRSKGg+wepUXzpX2nt3WzTuIP1YRePDAITey6RN5i3g3Ij8eozq+vNx/HwVDU9DXsDwXSy75BS00lfgY45kFhl5psWgj3FN1CSJXK0KSiLD6Q1HaIW+a9T/8VX2E9jZgfq9Bw0IsYlNnqKqRHWB+e08N9Ci+brjSVLMmKBO1dQODc2BItQlPqYN6dRe9sGtcqswP5I77o
     ufoLicenseKey: QVdiRFg4di8vLy8vQUFBQUtJdmswUTJwTUVrcHVHRTlIaDRIZncxWlp4ZElobklJR3Boa3cwMDJqSFJNWkI1QWxoRWRlQjRBNm4zTHI5anJKSlMyZWZXVWFPaFhsV3FvamQ5WmtzK1NMWHl1UnBJY0hwTk1iT2NCQjhDcy9aYWhDbFdNZ1lTNnVhQ3BNTkZWRkY2L1huQ2V1dWFpQUZnK3JpcGo0a05nM0thVUxXMXIyUkd6NEduTFVDNGV1cDE4b1Rzb0lIVE1xK1ZyV3g5c2U1ZmNCWjU3Mk44UTJkNlRLVnZHLzdVS2hzWmI2QlVPbklYV1JLd3NmWXpjaEs3MVRKRXR4bjRBSTkrdGJsYk4wU0FWd0lvS1ZvbEQrRnI2dDVUWDE0UVY5OUlVZ0xnZGsrNDBsQmJYeUdJZjdMY3J2elYwcjgvK0Fwb2VYWTltdStsZFNLdzhQZkJZL1JZT3BIRmZEVDBNaWFpN2NOUWx1Y09XSUdJYk1paXk=
-    delayedInitialization: 1
+    delayedInitialization: 0
     cameraDeviceModeSetting: -1
     maxSimultaneousImageTargets: 1
     maxSimultaneousObjectTargets: 1
@@ -43,12 +43,8 @@ MonoBehaviour:
       FieldOfView: {x: 0, y: 0, z: 0, w: 0}
       ContainsMagnet: 0
   databaseLoad:
-    dataSetsToLoad:
-    - VuforiaMars_Images
-    - VuforiaMars_VuMark
-    dataSetsToActivate:
-    - VuforiaMars_Images
-    - VuforiaMars_VuMark
+    dataSetsToLoad: []
+    dataSetsToActivate: []
   videoBackground:
     clippingMode: 0
     numDivisions: 2
@@ -61,7 +57,7 @@ MonoBehaviour:
     autoStartTracker: 1
     trackingMode: 0
     posePrediction: 0
-    modelCorrectionMode: 0
+    modelCorrectionMode: 2
     modelTransformEnabled: 0
     modelTransform: {x: 0, y: 0.1, z: -0.1}
   smartTerrain:
