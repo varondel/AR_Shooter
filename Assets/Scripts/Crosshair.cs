@@ -12,6 +12,9 @@ public class Crosshair : MonoBehaviour {
     [SerializeField]
     private Text scoreText;
 
+    [SerializeField]
+    private GameObject explosionPrefab;
+
     private int score;
     public int Score
     {
@@ -34,6 +37,8 @@ public class Crosshair : MonoBehaviour {
         {
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
+                GameObject _go = Instantiate(explosionPrefab, hit.point, Quaternion.identity);
+                Destroy(_go, 3);
                 Destroy(hit.collider.gameObject);
                 Score++;
             }
