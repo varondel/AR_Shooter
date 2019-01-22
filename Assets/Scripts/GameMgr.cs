@@ -29,4 +29,9 @@ public class GameMgr : MonoBehaviour {
         robotInstance.transform.Rotate(new Vector3(0, -90 - teta * 180 / Mathf.PI, 0));
         robotInstance.transform.position = new Vector3(r * Mathf.Cos(teta), 0, r * Mathf.Sin(teta));
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("Collision ! ");
+    }
 }
