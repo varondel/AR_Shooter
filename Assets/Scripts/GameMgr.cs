@@ -51,7 +51,11 @@ public class GameMgr : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+
+        // Recover Best score
         BestScore = PlayerPrefs.HasKey("Best") ? PlayerPrefs.GetInt("Best") : 0;
+
+        // Enemies spawn
         InvokeRepeating("Spawn", 0f, 5f);
 	}
 	
@@ -77,7 +81,7 @@ public class GameMgr : MonoBehaviour {
         IEnumerator waitForMenu = WaitForMenu(2.5f);
         StartCoroutine(waitForMenu);
 
-        //Save best
+        //Save best score
         if (!PlayerPrefs.HasKey("Best") || PlayerPrefs.GetInt("Best") < BestScore)
             PlayerPrefs.SetInt("Best", BestScore);
     }
