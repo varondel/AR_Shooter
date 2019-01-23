@@ -23,6 +23,9 @@ public class GameMgr : MonoBehaviour {
     [SerializeField]
     Transform cameraTransform;
 
+    [SerializeField]
+    float minSpawnRange, maxSpawnRange;
+
     private int bestScore;
     public int BestScore
     {
@@ -56,7 +59,7 @@ public class GameMgr : MonoBehaviour {
         BestScore = PlayerPrefs.HasKey("Best") ? PlayerPrefs.GetInt("Best") : 0;
 
         // Enemies spawn
-        InvokeRepeating("Spawn", 0f, 5f);
+        InvokeRepeating("Spawn", 0f, 2.5f);
 	}
 	
 	// Update is called once per frame
@@ -66,7 +69,7 @@ public class GameMgr : MonoBehaviour {
     // Enemies spawning
     private void Spawn()
     {
-        float r = Random.Range(60, 100);
+        float r = Random.Range(35, 40);
         float teta = Random.Range(0, 2 * Mathf.PI);
         float height = Random.Range(-5, 5);
 

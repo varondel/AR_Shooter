@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Robot_move : MonoBehaviour {
-    [SerializeField]
-    float speed;
+public class CameraRadar : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -13,6 +11,6 @@ public class Robot_move : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.Translate(0, 0, speed * Time.deltaTime);
+        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, Camera.main.transform.eulerAngles.y, transform.localEulerAngles.z);
 	}
 }
