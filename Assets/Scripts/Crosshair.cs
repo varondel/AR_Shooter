@@ -10,20 +10,10 @@ public class Crosshair : MonoBehaviour {
     private RaycastHit hit;
 
     [SerializeField]
-    private Text scoreText;
-
-    [SerializeField]
     private GameObject explosionPrefab;
 
-    private int score;
-    public int Score
-    {
-        get { return score; }
-        set {
-            score = value;
-            scoreText.text = "Score : " + value.ToString();
-        }
-    }
+    [SerializeField]
+    private GameMgr GameMgr;
 
 	// Use this for initialization
 	void Start () {
@@ -40,7 +30,7 @@ public class Crosshair : MonoBehaviour {
                 GameObject _go = Instantiate(explosionPrefab, hit.point, Quaternion.identity);
                 Destroy(_go, 3);
                 Destroy(hit.collider.gameObject);
-                Score++;
+                GameMgr.Score++;
             }
         }
 	}

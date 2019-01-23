@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameMgr : MonoBehaviour {
 
@@ -13,8 +14,41 @@ public class GameMgr : MonoBehaviour {
 
     GameObject robotInstance;
 
+    [SerializeField]
+    private Text scoreText;
+
+    [SerializeField]
+    private Text bestScoreText;
+
+    private int bestScore;
+    public int BestScore
+    {
+        get { return bestScore; }
+        set
+        {
+            bestScore = value;
+            bestScoreText.text = "Best : " + value.ToString();
+        }
+    }
+
+    private int score;
+    public int Score
+    {
+        get { return score; }
+        set
+        {
+            score = value;
+            scoreText.text = "Score : " + value.ToString();
+            if (score > BestScore)
+            {
+                BestScore = score;
+            }
+        }
+    }
+
     // Use this for initialization
     void Start () {
+        BestScore = PlayerPrefs.HasKey("Best") ? PlayerPrefs.GetInt("Best") : 0;
         InvokeRepeating("Spawn", 0f, 5f);
 	}
 	
@@ -27,10 +61,11 @@ public class GameMgr : MonoBehaviour {
     {
         float r = Random.Range(60, 100);
         float teta = Random.Range(0, 2 * Mathf.PI);
+        float height = Random.Range(-5, 5);
 
         robotInstance = Instantiate(robotPrefanb);
-        robotInstance.transform.Rotate(new Vector3(0, -90 - teta * 180 / Mathf.PI, 0));
-        robotInstance.transform.position = new Vector3(r * Mathf.Cos(teta), 0, r * Mathf.Sin(teta));
+        robotInstance.transform.position = new Vector3(r * Mathf.Cos(teta), height, r * Mathf.Sin(teta));
+        robotInstance.transform.LookAt(this.transform);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -38,7 +73,10 @@ public class GameMgr : MonoBehaviour {
         loseScreen.SetActive(true);
         IEnumerator waitForMenu = WaitForMenu(2.5f);
         StartCoroutine(waitForMenu);
-        
+
+        //Save best
+        if (!PlayerPrefs.HasKey("Best") || PlayerPrefs.GetInt("Best") < BestScore)
+            PlayerPrefs.SetInt("Best", BestScore);
     }
 
     private IEnumerator WaitForMenu(float seconds)
