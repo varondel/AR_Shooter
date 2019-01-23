@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameMgr : MonoBehaviour {
 
     [SerializeField]
     GameObject robotPrefanb;
+
+    [SerializeField]
+    GameObject loseScreen;
 
     GameObject robotInstance;
 
@@ -22,7 +26,6 @@ public class GameMgr : MonoBehaviour {
     private void Spawn()
     {
         float r = Random.Range(60, 100);
-        //r = 10;
         float teta = Random.Range(0, 2 * Mathf.PI);
 
         robotInstance = Instantiate(robotPrefanb);
@@ -32,6 +35,17 @@ public class GameMgr : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Collision ! ");
+        loseScreen.SetActive(true);
+        IEnumerator waitForMenu = WaitForMenu(4);
+        StartCoroutine(waitForMenu);
+        
+    }
+
+    private IEnumerator WaitForMenu(float seconds)
+    {
+        Time.timeScale = 0;
+        yield return new WaitForSeconds(seconds);
+        
+        //SceneManager.LoadScene("Menu");
     }
 }
