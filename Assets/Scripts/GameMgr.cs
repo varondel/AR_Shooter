@@ -49,7 +49,7 @@ public class GameMgr : MonoBehaviour {
     // Use this for initialization
     void Start () {
         BestScore = PlayerPrefs.HasKey("Best") ? PlayerPrefs.GetInt("Best") : 0;
-        //InvokeRepeating("Spawn", 0f, 5f);
+        InvokeRepeating("Spawn", 0f, 5f);
 	}
 	
 	// Update is called once per frame
