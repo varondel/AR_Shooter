@@ -25,8 +25,6 @@ public class Crosshair : MonoBehaviour {
     // Use this for initialization
     void Start () {
         center = new Vector2(Screen.width / 2, Screen.height / 2);
-        ray = Camera.main.ScreenPointToRay(center);
-
         audioSource = GetComponent<AudioSource>();
     }
 	
@@ -34,16 +32,29 @@ public class Crosshair : MonoBehaviour {
 	void Update () {
         if (Input.GetButtonDown("Fire1"))
         {
+            // Update ray with camera pos
+            ray = Camera.main.ScreenPointToRay(center);
+
+            // Laser sound
             audioSource.PlayOneShot(laserShoot);
-            Instantiate(Lasers);
+
+            // Instantiate and rotate laser with camera
+            GameObject goLasers = Instantiate(Lasers);
+            goLasers.transform.eulerAngles = Camera.main.transform.eulerAngles;
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
                 audioSource.PlayOneShot(destroySound);
                 GameObject _go = Instantiate(explosionPrefab, hit.point, Quaternion.identity);
+
+                // Destroy explosion animation when finished (should be a trigger)
                 Destroy(_go, 3);
+
+                // Destroy ennemi target
                 Destroy(hit.collider.gameObject);
-                GameMgr.Score++;
+
+                // Update score
+                GameMgr.Score = (int)Camera.main.transform.eulerAngles.y;
             }
         }
 	}

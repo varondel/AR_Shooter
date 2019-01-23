@@ -20,6 +20,9 @@ public class GameMgr : MonoBehaviour {
     [SerializeField]
     private Text bestScoreText;
 
+    [SerializeField]
+    Transform cameraTransform;
+
     private int bestScore;
     public int BestScore
     {
@@ -54,9 +57,9 @@ public class GameMgr : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
 	}
 
+    // Enemies spawning
     private void Spawn()
     {
         float r = Random.Range(60, 100);
