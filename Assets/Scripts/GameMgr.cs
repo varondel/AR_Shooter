@@ -36,7 +36,7 @@ public class GameMgr : MonoBehaviour {
     private void OnCollisionEnter(Collision collision)
     {
         loseScreen.SetActive(true);
-        IEnumerator waitForMenu = WaitForMenu(4);
+        IEnumerator waitForMenu = WaitForMenu(2.5f);
         StartCoroutine(waitForMenu);
         
     }
@@ -44,8 +44,8 @@ public class GameMgr : MonoBehaviour {
     private IEnumerator WaitForMenu(float seconds)
     {
         Time.timeScale = 0;
-        yield return new WaitForSeconds(seconds);
+        yield return new WaitForSecondsRealtime(seconds);
         
-        //SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("Menu");
     }
 }
