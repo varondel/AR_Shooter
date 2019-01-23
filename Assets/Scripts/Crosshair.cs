@@ -15,8 +15,11 @@ public class Crosshair : MonoBehaviour {
     [SerializeField]
     private GameMgr GameMgr;
 
-	// Use this for initialization
-	void Start () {
+    [SerializeField]
+    GameObject Lasers;
+
+    // Use this for initialization
+    void Start () {
         center = new Vector2(Screen.width / 2, Screen.height / 2);
         ray = Camera.main.ScreenPointToRay(center);
     }
@@ -25,6 +28,8 @@ public class Crosshair : MonoBehaviour {
 	void Update () {
         if (Input.GetButtonDown("Fire1"))
         {
+            Instantiate(Lasers);
+
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
                 GameObject _go = Instantiate(explosionPrefab, hit.point, Quaternion.identity);
