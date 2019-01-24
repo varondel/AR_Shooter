@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+
 public class GameMgr : MonoBehaviour {
 
     [SerializeField]
@@ -12,7 +13,7 @@ public class GameMgr : MonoBehaviour {
     [SerializeField]
     GameObject loseScreen;
 
-    GameObject robotInstance;
+    private List<GameObject> robotList = new List<GameObject>();
 
     [SerializeField]
     private Text scoreText;
@@ -59,7 +60,7 @@ public class GameMgr : MonoBehaviour {
         BestScore = PlayerPrefs.HasKey("Best") ? PlayerPrefs.GetInt("Best") : 0;
 
         // Enemies spawn
-        InvokeRepeating("Spawn", 0f, 2.5f);
+        InvokeRepeating("Spawn", 1, 2f);
 	}
 	
 	// Update is called once per frame
@@ -73,7 +74,9 @@ public class GameMgr : MonoBehaviour {
         float teta = Random.Range(0, 2 * Mathf.PI);
         float height = Random.Range(-5, 5);
 
-        robotInstance = Instantiate(robotPrefanb);
+        GameObject robotInstance = Instantiate(robotPrefanb);
+        AddRobot(robotInstance);
+
         robotInstance.transform.position = new Vector3(r * Mathf.Cos(teta), height, r * Mathf.Sin(teta));
         robotInstance.transform.LookAt(this.transform);
     }
@@ -95,5 +98,31 @@ public class GameMgr : MonoBehaviour {
         yield return new WaitForSecondsRealtime(seconds);
         
         SceneManager.LoadScene("Menu");
+    }
+
+    public void AddRobot(GameObject robot)
+    {
+        robotList.Add(robot);
+        Debug.Log(robotList.Count);
+
+        // Play sound of first robot
+        if (robotList.Count == 1)
+        {
+            robotList[0].GetComponent<AudioSource>().Play();
+        }
+    }
+
+    public void RemoveRobot(GameObject robot)
+    {
+        if (robotList.Count == 0)
+            return;
+
+        // Play sound on next root if first one was destroyed
+        if (robotList[0] == robot && robotList.Count > 1)
+            robotList[1].GetComponent<AudioSource>().Play();
+
+        robotList.Remove(robot);
+        Destroy(robot);
+        
     }
 }

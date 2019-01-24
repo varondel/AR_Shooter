@@ -51,10 +51,10 @@ public class Crosshair : MonoBehaviour {
                 Destroy(_go, 3);
 
                 // Destroy ennemi target
-                Destroy(hit.collider.gameObject);
-
+                GameMgr.RemoveRobot(hit.collider.gameObject);
+                
                 // Update score
-                GameMgr.Score = (int)Camera.main.transform.eulerAngles.y;
+                GameMgr.Score++;
             }
         }
 	}
