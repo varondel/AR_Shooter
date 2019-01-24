@@ -69,7 +69,7 @@ public class GameMgr : MonoBehaviour {
     // Enemies spawning
     private void Spawn()
     {
-        float r = Random.Range(35, 40);
+        float r = Random.Range(minSpawnRange, maxSpawnRange);
         float teta = Random.Range(0, 2 * Mathf.PI);
         float height = Random.Range(-5, 5);
 

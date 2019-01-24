@@ -660,8 +660,8 @@ MonoBehaviour:
   scoreText: {fileID: 655758012}
   bestScoreText: {fileID: 1114320967}
   cameraTransform: {fileID: 2108349091}
-  minSpawnRange: 39
-  maxSpawnRange: 40
+  minSpawnRange: 50
+  maxSpawnRange: 55
 --- !u!4 &1489118098
 Transform:
   m_ObjectHideFlags: 0
@@ -878,7 +878,6 @@ GameObject:
   - component: {fileID: 1837814368}
   - component: {fileID: 1837814364}
   - component: {fileID: 1837814367}
-  - component: {fileID: 1837814366}
   - component: {fileID: 1837814365}
   - component: {fileID: 1837814369}
   m_Layer: 0
@@ -908,7 +907,7 @@ Camera:
   far clip plane: 216.7
   field of view: 60
   orthographic: 1
-  orthographic size: 40
+  orthographic size: 60.1
   m_Depth: 2
   m_CullingMask:
     serializedVersion: 2
@@ -930,13 +929,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1837814363}
---- !u!81 &1837814366
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1837814363}
-  m_Enabled: 1
 --- !u!124 &1837814367
 Behaviour:
   m_ObjectHideFlags: 0
@@ -1191,7 +1183,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.80038184, g: 0.7532439, b: 0.9485294, a: 1}
+  m_BackGroundColor: {r: 0.7936107, g: 0.72794116, b: 1, a: 1}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
